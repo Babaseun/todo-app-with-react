@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
 import TodoItem from './TodoItem';
+import InputBox from '../layouts/InputBox';
 
 class Todos extends Component {
   state = {
@@ -37,12 +38,29 @@ class Todos extends Component {
       })
     });
   };
+  deleteTodo = id => {
+    this.setState({ todos: this.state.todos.filter(todo => todo.id !== id) });
+  };
+  addTodos = title => {
+    const newTodo = {
+        id:uuid.v4(),
+        title,
+        completed:false
+    }
+    this.setState({todos:[...this.state.todos,newTodo]})
+  };
 
   render() {
     return (
       <div>
+        <InputBox addTodos={this.addTodos} />
         {this.state.todos.map(todo => (
-          <TodoItem key={todo.id} todos={todo} markDown={this.markDown} />
+          <TodoItem
+            key={todo.id}
+            todos={todo}
+            markDown={this.markDown}
+            deleteTodo={this.deleteTodo}
+          />
         ))}
       </div>
     );

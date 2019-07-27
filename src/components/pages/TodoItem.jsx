@@ -3,16 +3,18 @@ import React, { Component } from 'react';
 export default class TodoItem extends Component {
   styles = {
     display: 'flex',
+    margin: '20px',
     justifyContent: 'center',
     height: '100px',
-    border: '1px dotted red',
-    alignItems: 'center'
+    // border: '1px solid red',
+    alignItems: 'center',
+    backgroundColor: 'white'
   };
 
   render() {
     const { title, id } = this.props.todos;
     return (
-      <form style={this.styles}>
+      <div style={this.styles} className="form">
         <div className="form-check ">
           <input
             className="form-check-input"
@@ -24,10 +26,13 @@ export default class TodoItem extends Component {
             {title}
           </label>
         </div>
-        <button className="btn btn-danger ml-5" onClick={this.deleteTo}>
+        <button
+          className="btn btn-danger ml-5"
+          onClick={() => this.props.deleteTodo(id)}
+        >
           Delete
         </button>
-      </form>
+      </div>
     );
   }
 
