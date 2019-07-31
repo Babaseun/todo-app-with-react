@@ -1,33 +1,23 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
+// import uuid from 'uuid';
 import TodoItem from './TodoItem';
 import InputBox from '../layouts/InputBox';
 
 class Todos extends Component {
   state = {
-    todos: [
-      {
-        id: uuid.v4(),
-        title: 'Wash Cloths',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Go to market',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Have lunch',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Go to Church',
-        completed: false
-      }
-    ]
+    todos: [],
+    email: '',
+    password: ''
   };
+  componentDidMount() {
+    const key = localStorage.getItem('key');
+    fetch(`http://localhost:3000/todos?userId=${key}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ todos: data });
+      });
+  }
   markDown = id => {
     this.setState({
       todos: this.state.todos.map(todo => {
@@ -42,12 +32,17 @@ class Todos extends Component {
     this.setState({ todos: this.state.todos.filter(todo => todo.id !== id) });
   };
   addTodos = title => {
-    const newTodo = {
-        id:uuid.v4(),
-        title,
-        completed:false
-    }
-    this.setState({todos:[...this.state.todos,newTodo]})
+    fetch(` http://localhost:3000/todos?userId=${1}`, {
+      method: 'POST',
+      body: JSON.stringify({ title, completed: false }),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
   };
 
   render() {
