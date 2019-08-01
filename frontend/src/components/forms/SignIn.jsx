@@ -1,40 +1,40 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-export class SignIn extends Component {
+class SignIn extends Component {
   state = {
     email: '',
     password: ''
   };
   styles = {
     width: '500px',
-    margin: '100px auto',
+    margin: '80px  auto',
     backgroundColor: 'white',
-    padding: '30px'
+    padding: '30px',
+    height: '400px'
   };
+  errorMsgStyle = { display: 'none' };
+
   onSubmitUser = e => {
     e.preventDefault();
     const { email, password } = this.state;
-    this.addUser(email, password);
-    this.setState({ email: '', password: '' });
+    this.getUser(email, password);
   };
+
   onChange = details => {
     this.setState({ [details.target.name]: details.target.value });
   };
 
   render() {
-    // const errorMsg = 'bg-danger w-100 text-white error';
-    // var style = {
-    //   display: 'none'
-    // };
-
     return (
       <div>
         <form onSubmit={this.onSubmitUser} style={this.styles}>
           <h1 className="header  text-center">Login</h1>
-          {/* <h4 style={style} className={errorMsg}>
-            This email already exist
-          </h4> */}
-
+          <div style={this.errorMsgStyle} className="errorMsgStyleDisplay">
+            <h4 className="bg-danger w-100 text-white">
+              User with this email is not registered
+            </h4>
+          </div>
           <div className="form-group">
             <label>Email</label>
             <input
@@ -58,23 +58,29 @@ export class SignIn extends Component {
           <button type="submit" className="btn btn-primary btn-block">
             Submit
           </button>
+          <Link to="/">Not Yet Registered Click Here</Link>
         </form>
       </div>
     );
   }
-  addUser = (email, password) => {
+  getUser = (email, password) => {
     const url = `http://localhost:3000/users?email=${email}`;
 
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        data.length !== 0 ? nextStepTodo(data) : console.log('hii');
+        if (data.length !== 0) {
+          document.querySelector('.errorMsgStyleDisplay').style.display =
+            'none';
+          const [{ id }] = data;
+
+          localStorage.setItem('key', id);
+
+          window.location = '/todos';
+        } else {
+          document.querySelector('.errorMsgStyleDisplay').style.display = '';
+        }
       });
-    const nextStepTodo = data => {
-      const [{ id }] = data;
-     localStorage.setItem('key',id)
-     window.location ="/todos"
-    };
   };
 }
 

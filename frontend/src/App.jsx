@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 class App extends Component {
   styles = {
     backgroundColor: 'yellow',
-    height: '100vh'
+    height: '100%'
   };
 
   render() {
@@ -28,24 +28,25 @@ class App extends Component {
           />
           <Route
             exact
-            path="/register"
+            path="/"
             render={() => {
               return <SignUp />;
             }}
           />
-
-          <Route
-            exact
-            path="/todos"
-            render={() => {
-              return (
-                <div className="container">
-                  <Todos />
-                  <Footer />
-                </div>
-              );
-            }}
-          />
+          <div>
+            <Route
+              exact
+              path="/todos"
+              render={() => {
+                return (
+                  <div className="container-fluid">
+                    <Todos />
+                    <Footer />
+                  </div>
+                );
+              }}
+            />
+          </div>
         </div>
       </Router>
     );
