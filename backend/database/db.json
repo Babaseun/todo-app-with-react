@@ -1,0 +1,75 @@
+{
+  "users": [
+    {
+      "email": "ababaseun@gmail.com",
+      "password": "123456789",
+      "id": 1
+    },
+    {
+      "email": "john@gmail.com",
+      "password": "",
+      "id": 2
+    },
+    {
+      "email": "cj@gmail.com",
+      "password": "",
+      "id": 3
+    }
+  ],
+  "todos": [
+    {
+      "title": "singing",
+      "completed": false,
+      "userId": "2",
+      "id": 13
+    },
+    {
+      "title": "sleep",
+      "completed": false,
+      "userId": "2",
+      "id": 25
+    },
+    {
+      "title": "sleep",
+      "completed": false,
+      "userId": "2",
+      "id": 26
+    },
+    {
+      "title": "have lunch",
+      "completed": false,
+      "userId": "1",
+      "id": 27
+    },
+    {
+      "title": "play outside",
+      "completed": false,
+      "userId": "1",
+      "id": 28
+    },
+    {
+      "title": "code all day",
+      "completed": false,
+      "userId": "1",
+      "id": 29
+    },
+    {
+      "title": "code all night",
+      "completed": false,
+      "userId": "1",
+      "id": 30
+    },
+    {
+      "title": "have lunch",
+      "completed": false,
+      "userId": "3",
+      "id": 31
+    },
+    {
+      "title": "have breakfast",
+      "completed": false,
+      "userId": "3",
+      "id": 32
+    }
+  ]
+}

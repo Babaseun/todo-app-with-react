@@ -9,6 +9,10 @@ export default class Footer extends Component {
     justifyContent: 'center',
     alignItems: 'center'
   };
+  logOut = () => {
+    localStorage.clear();
+    window.location = '/login';
+  };
   render() {
     return (
       <div>
@@ -16,6 +20,9 @@ export default class Footer extends Component {
           <div>
             <h1>Todos</h1>
           </div>
+          <button className="btn btn-danger ml-3" onClick={this.logOut}>
+            LOGOUT
+          </button>
         </footer>
       </div>
     );

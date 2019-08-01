@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default class TodoItem extends Component {
+class TodoItem extends Component {
   styles = {
     display: 'flex',
     margin: '20px',
@@ -26,12 +27,14 @@ export default class TodoItem extends Component {
             {title}
           </label>
         </div>
-        <button
-          className="btn btn-danger ml-5"
-          onClick={() => this.props.deleteTodo(id)}
-        >
-          Delete
-        </button>
+        <div>
+          <button
+            className="btn btn-danger"
+            onClick={() => this.props.deleteTodo(id)}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     );
   }
@@ -39,7 +42,14 @@ export default class TodoItem extends Component {
   labelStyle = () => {
     const { completed } = this.props.todos;
     return {
-      textDecoration: completed ? 'line-through' : 'none'
+      textDecoration: completed ? 'line-through' : 'none',
+
+      width: '101px'
     };
   };
 }
+TodoItem.propTypes = {
+  markDown: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired
+};
+export default TodoItem;

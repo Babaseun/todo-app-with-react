@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 export default class InputBox extends Component {
   state = {
     title: ''
   };
   styles = {
-    width: '500px',
+    width: '400px',
     margin: '10px auto',
     backgroundColor: 'white',
     padding: '30px'
@@ -18,6 +18,7 @@ export default class InputBox extends Component {
     this.props.addTodos(this.state.title);
   };
   render() {
+    console.log(this.props);
     return (
       <div style={this.styles}>
         <form onSubmit={this.onSubmit} className="form">
@@ -39,3 +40,6 @@ export default class InputBox extends Component {
     );
   }
 }
+InputBox.propTypes = {
+  addTodos: PropTypes.func.isRequired
+};
